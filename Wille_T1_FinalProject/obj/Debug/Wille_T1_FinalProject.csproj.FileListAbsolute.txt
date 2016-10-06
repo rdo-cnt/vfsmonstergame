@@ -4,3 +4,6 @@ c:\users\gd45michael\documents\visual studio 2015\Projects\Wille_T1_FinalProject
 c:\users\gd45michael\documents\visual studio 2015\Projects\Wille_T1_FinalProject\Wille_T1_FinalProject\obj\Debug\Wille_T1_FinalProject.csprojResolveAssemblyReference.cache
 c:\users\gd45michael\documents\visual studio 2015\Projects\Wille_T1_FinalProject\Wille_T1_FinalProject\obj\Debug\Wille_T1_FinalProject.exe
 c:\users\gd45michael\documents\visual studio 2015\Projects\Wille_T1_FinalProject\Wille_T1_FinalProject\obj\Debug\Wille_T1_FinalProject.pdb
+C:\Users\GD45Michael\Documents\GitHub\vfsmonstergame\Wille_T1_FinalProject\bin\Debug\Wille_T1_FinalProject.exe.config
+C:\Users\GD45Michael\Documents\GitHub\vfsmonstergame\Wille_T1_FinalProject\obj\Debug\Wille_T1_FinalProject.exe
+C:\Users\GD45Michael\Documents\GitHub\vfsmonstergame\Wille_T1_FinalProject\obj\Debug\Wille_T1_FinalProject.pdb
