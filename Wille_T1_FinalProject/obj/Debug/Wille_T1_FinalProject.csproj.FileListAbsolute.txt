@@ -10,3 +10,6 @@ C:\Users\GD45Michael\Documents\GitHub\vfsmonstergame\Wille_T1_FinalProject\obj\D
 C:\Users\GD45daniel\Documents\GitHub\vfsmonstergame\Wille_T1_FinalProject\bin\Debug\Wille_T1_FinalProject.exe.config
 C:\Users\GD45daniel\Documents\GitHub\vfsmonstergame\Wille_T1_FinalProject\obj\Debug\Wille_T1_FinalProject.exe
 C:\Users\GD45daniel\Documents\GitHub\vfsmonstergame\Wille_T1_FinalProject\obj\Debug\Wille_T1_FinalProject.pdb
+C:\Users\gd45gareth\Documents\GitHub\vfsmonstergame\Wille_T1_FinalProject\bin\Debug\Wille_T1_FinalProject.exe.config
+C:\Users\gd45gareth\Documents\GitHub\vfsmonstergame\Wille_T1_FinalProject\obj\Debug\Wille_T1_FinalProject.exe
+C:\Users\gd45gareth\Documents\GitHub\vfsmonstergame\Wille_T1_FinalProject\obj\Debug\Wille_T1_FinalProject.pdb
