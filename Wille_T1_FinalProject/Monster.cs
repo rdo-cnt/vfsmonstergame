@@ -225,6 +225,7 @@ namespace Wille_T1_FinalProject
             }
             //Feedback for the user after using a potion
             Console.WriteLine(m_sName + " is healed!");
+
         }
     }
 }

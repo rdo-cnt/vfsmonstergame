@@ -10,8 +10,21 @@ namespace Wille_T1_FinalProject
     {
         static void Main(string[] args)
         {
-            //Test 
-           
+            int iAttributePoints;
+            string sMonsterName;
+            int iPlayerMonsterHealth;
+            int iPlayerMonsterAttack;
+            int iPlayerMonsterDefense;
+            int iPlayerMonsterSpeed;
+            int iTrinity;
+            string sTrinity;
+            int iBattleNumber;
+        }
+
+        //introduction for the player and setting up their Monster
+        static void Start()
+        {
+            Combat(oPlayerMonster, iBattleNumber);
         }
     }
 }
