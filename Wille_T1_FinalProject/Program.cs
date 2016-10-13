@@ -24,6 +24,10 @@ namespace Wille_T1_FinalProject
         //introduction for the player and setting up their Monster
         static void Start()
         {
+            Console.WriteLine("Welcome to the Stadium");
+            Console.WriteLine("Before you begin battle you will need to select your monster");
+            Console.WriteLine("");
+
             Combat(oPlayerMonster, iBattleNumber);
         }
         static void Combat()
