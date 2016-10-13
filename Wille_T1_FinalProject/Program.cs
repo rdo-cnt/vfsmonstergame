@@ -26,5 +26,9 @@ namespace Wille_T1_FinalProject
         {
             Combat(oPlayerMonster, iBattleNumber);
         }
+        static void Combat()
+        {
+            
+        }
     }
 }
