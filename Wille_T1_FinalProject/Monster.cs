@@ -19,11 +19,11 @@ namespace Wille_T1_FinalProject
 
         /*Set of constructors for the player and opponent*/
         //Constructor for the player
-        public Monster(string sName, int iHealth, int iAttack, int iDefense, int iSpeed, int iTrinity)
+        public Monster(string sName, int iAttack, int iDefense, int iSpeed, int iTrinity)
         {
             //Setting the monster variables to those inputed
             m_sName = sName;
-            m_iHealth = iHealth;
+            m_iHealth = 10;
             m_iAttack = iAttack;
             m_iDefense = iDefense;
             m_iSpeed = iSpeed;
