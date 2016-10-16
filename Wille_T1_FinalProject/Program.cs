@@ -11,24 +11,31 @@ namespace Wille_T1_FinalProject
     {
         static void Main(string[] args)
         {
-            bool bGameState = true;
-            int iAttributePoints = 10;
-            string sMonsterName;
-            int iPlayerMonsterHealth;
-            int iPlayerMonsterAttack = 3;
-            int iPlayerMonsterDefense = 3;
-            int iPlayerMonsterSpeed = 3;
-            int iTrinity = 0;
-            int iBattleNumber;
-            int iTruthValue;
+            bool bGameState = true; //Gamestate for the game loop
+            int iAttributePoints; //Attribute points allotted for the player
+            string sMonsterName; //name of the monster
+            int iPlayerMonsterAttack;
+            int iPlayerMonsterDefense;
+            int iPlayerMonsterSpeed;
+            int iTrinity; //Trinity for the monster. 0 = fire, 1 = water, 2 = grass
+            int iBattleNumber; //Correlates to the battles that the player will face
+            int iTruthValue; //Used for TryParse
             string sPlayerInput;
-            int iPlayerInput;
-            int iWins = 0;
-            bool bPlayerLose = false;
-            bool bValidNumber = false;
+            int iPlayerInput; //Players input converted to an int
+            int iWins; //Number of battles the player has won
+            bool bPlayerLose; //If the player has lost
+            bool bValidNumber = false; //Check for valid number of attribute points.
 
-            while (bGameState = true)
+            while (bGameState == true)
             {
+                //Initial set up if the player restarts the game so they don't have the stats from last game.
+                iAttributePoints = 10;
+                iPlayerMonsterAttack = 3;
+                iPlayerMonsterDefense = 3;
+                iPlayerMonsterSpeed = 3;
+                iWins = 0;
+                bPlayerLose = false;
+
                 //welcome the player to the stadium, give them a monster, and have them name the monster.
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("Welcome to the Stadium");
@@ -44,6 +51,8 @@ namespace Wille_T1_FinalProject
                 ///////////
                 while (bValidNumber == false)
                 {
+                    Thread.Sleep(3000);
+                    Console.Clear();
                     Console.WriteLine("Please choose one of the three monsters");
                     Thread.Sleep(1000);
                     Console.WriteLine("-------------");
@@ -68,7 +77,7 @@ namespace Wille_T1_FinalProject
                         if (iPlayerInput == 1 || iPlayerInput == 2 || iPlayerInput == 3)
                         {
                             //Monster attack is the first stat being assigned through player input, if the code has checked through thus far, assign the value of the input to the Players Monsters Attack
-                            iTrinity = iPlayerInput;
+                            iTrinity = iPlayerInput - 1;
                             //subtract the number of alloted attribute points by the number used by the player
                             bValidNumber = true;
                         }
@@ -91,7 +100,8 @@ namespace Wille_T1_FinalProject
                 }
                 //set valid number to false for the next loop
                 bValidNumber = false;
-                
+
+                //Prompt the user to name their monster
                 Console.WriteLine("Awesome Choice. Here you go, they're all yours now!");
                 Thread.Sleep(1000);
                 Console.WriteLine("What would you like to name this little guy?");
@@ -100,6 +110,7 @@ namespace Wille_T1_FinalProject
                 Thread.Sleep(1000);
                 Console.WriteLine(sMonsterName + " is a great name!");
                 Thread.Sleep(1000);
+                //Prompt the user to allocate their stats
                 Console.WriteLine("Now that your Monster has a name, you need to allot their stats.");
                 Thread.Sleep(1000);
 
@@ -109,6 +120,8 @@ namespace Wille_T1_FinalProject
                 //check to see if the input of the player can actually be parsed, if so, run the code in the if statement
                 while (bValidNumber == false)
                 {
+                    Thread.Sleep(3000);
+                    Console.Clear();
                     Console.WriteLine("--------------------------------------------------------");
                     Thread.Sleep(1000);
                     Console.WriteLine("Here are your current stats:");
@@ -158,7 +171,7 @@ namespace Wille_T1_FinalProject
                         Console.BackgroundColor = ConsoleColor.White;
                     }
                 }
-                //once the whilte loop has been used, set bValidNumber to false so that the variable can be used again
+                //once the while loop has been used, set bValidNumber to false so that the variable can be used again
                 bValidNumber = false;
 
                 //prompt the user to distribute stats into the defense attribute
@@ -188,6 +201,8 @@ namespace Wille_T1_FinalProject
                 //check to see if the input of the player can actually be parsed, if so, run the code in the if statement
                 while (bValidNumber == false)
                 {
+                    Thread.Sleep(3000);
+                    Console.Clear();
                     Console.Write("Please input the number of attribute points you would like to allot to Defense: ");
                     Thread.Sleep(1000);
                     sPlayerInput = Console.ReadLine();
@@ -223,7 +238,7 @@ namespace Wille_T1_FinalProject
                     }
                 }
 
-                //once the whilte loop has been used, set bValidNumber to false so that the variable can be used again
+                //once the while loop has been used, set bValidNumber to false so that the variable can be used again
                 bValidNumber = false;
 
                 //Display current stats and inform the player of the situation
@@ -247,6 +262,8 @@ namespace Wille_T1_FinalProject
                 //check to see if the input of the player can actually be parsed, if so, run the code in the if statement
                 while (bValidNumber == false)
                 {
+                    Thread.Sleep(3000);
+                    Console.Clear();
                     Console.Write("Please input the number of points you would like to put into Speed: ");
                     Thread.Sleep(1000);
                     sPlayerInput = Console.ReadLine();
@@ -282,7 +299,7 @@ namespace Wille_T1_FinalProject
                     }
                 }
 
-                //once the whilte loop has been used, set bValidNumber to false so that the variable can be used again
+                //once the while loop has been used, set bValidNumber to false so that the variable can be used again
                 bValidNumber = false;
 
                 //Display current stats and inform the player of the situation
@@ -319,39 +336,50 @@ namespace Wille_T1_FinalProject
                     //call the function combat, and pass oplayermonster from the class and ibattlenumber to the function
                     Combat(oPlayerMonster, iBattleNumber);
 
+                    //If the playerMonster loses, end the game.
                     if (oPlayerMonster.GetHealth() == 0)
                     {
                         bPlayerLose = true;
                     }
-                    iBattleNumber++;
-                    if (iBattleNumber > 3)
+                    //If the player wins their battle
+                    else
                     {
-                        iBattleNumber = 0;
+                        //Add to the battle number for the next round.
+                        iBattleNumber++;
+                        //Add to the player wins
+                        iWins++;
+                        //Logic to continue the battles until the player wins 3 battles.
+                        if (iBattleNumber > 2)
+                        {
+                            iBattleNumber = 0;
+                        }
                     }
                 }
 
                 ///////
-                ///deliver messages to the player dependant on the battle number that they lose on
+                ///deliver messages to the player dependant on how many battles they've won.
                 //////
-                if (bPlayerLose == true)
                 //communicate that the player lost on the first monster
-                if (iTrinity == 0 && iBattleNumber == 2 || iTrinity == 1 && iBattleNumber == 0 || iTrinity == 2 && iBattleNumber == 1)
+                if (iWins == 0)
                 {
                     Console.WriteLine("Sorry you couldn't defeat the first Monster, better luck next time!");
                 }
-
                 //communicate that the player lost on the second monster
-                if (iTrinity == 0 && iBattleNumber == 0 || iTrinity == 1 && iBattleNumber == 1 || iTrinity == 2 && iBattleNumber == 2)
+                if (iWins == 1)
                 {
                     Console.WriteLine("Sorry you couldn't defeat the second Monster, better luck next time!");
                 }
 
                 //communicate that the player lost on the third monster
-                if (iTrinity == 0 && iBattleNumber == 1 || iTrinity == 1 && iBattleNumber == 2 || iTrinity == 2 && iBattleNumber == 0)
+                if (iWins == 2)
                 {
                     Console.WriteLine("Sorry you couldn't defeat the third Monster, better luck next time!");
                 }
-
+                //communicate that the player won against all three monsters
+                if (iWins == 3)
+                {
+                    Console.WriteLine("Congratulations! You've defeated all three Monsters!");
+                }
                 //ask the player if they want to play again
                 Console.Write("Would you like to try again? Y/N ");
                 sPlayerInput = Console.ReadLine();
@@ -359,11 +387,15 @@ namespace Wille_T1_FinalProject
                 // if "no" close the program;
                 if (sPlayerInput == "no" || sPlayerInput == "n")
                 {
-                    //close the program
-                    Environment.Exit(0);
+                    //End the game loop
+                    bGameState = false;
                 }
-
+                //If the message is not no then we restart the loop.
             }
+            //Goodbye message
+            Console.WriteLine("We are sorry to see you go!");
+            Thread.Sleep(3000);
+
         }
 
         static void ShowFightStats(Monster oPlayerMonster, Monster oEnemyMonster)
