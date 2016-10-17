@@ -19,3 +19,9 @@ C:\Users\garet\Documents\GitHub\vfsmonstergame\Wille_T1_FinalProject\obj\Debug\W
 C:\Users\garet\Documents\GitHub\vfsmonstergame\Wille_T1_FinalProject\bin\Debug\Wille_T1_FinalProject.exe
 C:\Users\garet\Documents\GitHub\vfsmonstergame\Wille_T1_FinalProject\bin\Debug\Wille_T1_FinalProject.pdb
 C:\Users\garet\Documents\GitHub\vfsmonstergame\Wille_T1_FinalProject\obj\Debug\Wille_T1_FinalProject.csprojResolveAssemblyReference.cache
+C:\Users\GD45Rodolfo\Documents\GitHub\vfsmonstergame\Wille_T1_FinalProject\bin\Debug\Wille_T1_FinalProject.exe.config
+C:\Users\GD45Rodolfo\Documents\GitHub\vfsmonstergame\Wille_T1_FinalProject\obj\Debug\Wille_T1_FinalProject.exe
+C:\Users\GD45Rodolfo\Documents\GitHub\vfsmonstergame\Wille_T1_FinalProject\obj\Debug\Wille_T1_FinalProject.pdb
+C:\Users\GD45Rodolfo\Documents\GitHub\vfsmonstergame\Wille_T1_FinalProject\obj\Debug\Wille_T1_FinalProject.csprojResolveAssemblyReference.cache
+C:\Users\GD45Rodolfo\Documents\GitHub\vfsmonstergame\Wille_T1_FinalProject\bin\Debug\Wille_T1_FinalProject.exe
+C:\Users\GD45Rodolfo\Documents\GitHub\vfsmonstergame\Wille_T1_FinalProject\bin\Debug\Wille_T1_FinalProject.pdb

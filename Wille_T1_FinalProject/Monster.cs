@@ -12,6 +12,7 @@ namespace Wille_T1_FinalProject
         private string m_sName; //The monster's name
         private int m_iHealth; //The monster's health
         private int m_iAttack; //The monster's attack
+        private int m_maxHealth; //The monster's maxHP
         private int m_iDefense; //The monster's defense
         private int m_iSpeed; //The monster's speed
         private string m_sTrinity; //For the fire/water/grass affinity
@@ -28,6 +29,7 @@ namespace Wille_T1_FinalProject
             m_iDefense = iDefense;
             m_iSpeed = iSpeed;
             m_iTrinity = iTrinity;
+            m_maxHealth = m_iHealth;
 
             //Switchcase to determine the Trinity name
             switch (iTrinity)
@@ -56,6 +58,7 @@ namespace Wille_T1_FinalProject
                     m_iDefense = 4;
                     m_iSpeed = 5;
                     m_sTrinity = "Fire";
+                    m_maxHealth = m_iHealth;
                     m_iTrinity = 0; //0 = fire, 1 = water, 2 = grass
                     break;
                 case 1: //Second monster opponent. Higher speed water type
@@ -65,6 +68,7 @@ namespace Wille_T1_FinalProject
                     m_iDefense = 5;
                     m_iSpeed = 6;
                     m_sTrinity = "Water";
+                    m_maxHealth = m_iHealth;
                     m_iTrinity = 1; //0 = fire, 1 = water, 2 = grass
                     break;
                 case 2: //Third monster opponent. Tankier grass type
@@ -74,6 +78,7 @@ namespace Wille_T1_FinalProject
                     m_iDefense = 6;
                     m_iSpeed = 4;
                     m_sTrinity = "Grass";
+                    m_maxHealth = m_iHealth;
                     m_iTrinity = 2; //0 = fire, 1 = water, 2 = grass
                     break;
             }
@@ -89,6 +94,11 @@ namespace Wille_T1_FinalProject
         public int GetHealth()
         {
             return m_iHealth;
+        }
+        //Getter for the monster's max health
+        public int GetMaxHealth()
+        {
+            return m_maxHealth;
         }
         //Getter for the monster's attack
         public int GetAttack()
@@ -116,73 +126,88 @@ namespace Wille_T1_FinalProject
             return m_iTrinity;
         }
 
-        /* For attacking an opponent pass the monsters attack
-         * The following comment would be an example of Charmander getting attacked by the player
-         * Charmander.RegularAttackHit(PlayerMonster.GetAttack());*/
-        //Function for getting hit by a regular attack
-        public void RegularAttackHit(int iOpponentAttack)
+        //Monster loses health
+        public void LoseHealth(int damage)
         {
-            iOpponentAttack -= m_iDefense; //An opponents attack is reduced by the monster's defense
-            if (iOpponentAttack < 2) //The minimum damage that an opponent can deal is 2
-            {
-                iOpponentAttack = 2;
-            }
-            m_iHealth -= iOpponentAttack; //Reduce the monster's health by the attack
-            //Provide feedback to the player on how much damage was dealt
-            Console.WriteLine(m_sName + " was dealt " + iOpponentAttack + " damage!");
+            m_iHealth -= damage;
         }
-        //Function for getting hit by a special attack. 0 = fire, 1 = water, 2 = grass
-        public void SpecialAttackHit(int iOpponentAttack, int iOpponentTrinity)
-        {
-            float fDamageMultiplier = 1f;
 
-            if (m_iTrinity == 0) //The monster being hit is a fire type
+
+        /* For attacking an opponent pass the monsters attack
+         * The following comment would be an example of the user attacking charmander
+         * playerMonster.RegularAttackHit(enemyMonster);*/
+        //Function for attacking an opponent with a regular attack
+        public void RegularAttackHit(Monster Enemy)
+        {
+
+            int ModifiedAtk = m_iAttack - Enemy.m_iDefense; //An monster's attack is reduced by the enemy's defense
+
+
+            if (ModifiedAtk < 2) //The minimum damage that an opponent can deal is 2
             {
-                switch (iOpponentTrinity)
+                ModifiedAtk = 2;
+            }
+            Enemy.LoseHealth(ModifiedAtk); //Reduce the enemy monster's health by the attack
+
+            //Provide feedback to the player on how much damage was dealt
+            Console.WriteLine(Enemy.GetName() + " received " + ModifiedAtk + " damage!");
+            Console.WriteLine();
+            Console.WriteLine("Press enter to continue!");
+            Console.ReadLine();
+        }
+
+        //Function for getting hit by a special attack. 0 = fire, 1 = water, 2 = grass
+        public void SpecialAttackHit(Monster Enemy)
+        {
+            int fDamageMultiplier = 1;
+
+            if (Enemy.GetIntegerTrinity() == 0) //The monster being hit is a fire type
+            {
+                switch (m_iTrinity)
                 {
                     case 0: //If the attack is fire the multiplier stays the same
                         break;
                     case 1: //If the attack is water the multiplier doubles
-                        fDamageMultiplier = 2f;
+                        fDamageMultiplier = 2;
                         //Feedback to the player on the attack being super effective
                         Console.WriteLine("It's super effective!");
                         break;
                     case 2: //If the attack is grass the multiplier halves
-                        fDamageMultiplier = 0.5f;
+                        fDamageMultiplier = 0;
                         //Feedback to the player on the attack being not very effective
                         Console.WriteLine("It's not very effective...");
                         break;
                 }
             }
-            if (m_iTrinity == 1) //The monster being hit is a water type
+            if (Enemy.GetIntegerTrinity() == 1) //The monster being hit is a water type
             {
-                switch (iOpponentTrinity)
+                switch (m_iTrinity)
                 {
                     case 0: //If the attack is fire the multiplier halves
-                        fDamageMultiplier = 0.5f;
+                        fDamageMultiplier = 0;
                         //Feedback to the player on the attack being not very effective
                         Console.WriteLine("It's not very effective...");
                         break;
                     case 1: //If the attack is water the multiplier stays the same
                         break;
                     case 2: //If the attack is grass the multiplier doubles
-                        fDamageMultiplier = 2f;
+                        fDamageMultiplier = 2;
                         //Feedback to the player on the attack being super effective
                         Console.WriteLine("It's super effective!");
                         break;
                 }
             }
-            if (m_iTrinity == 2) //The monster being hit is a grass type
+            if (Enemy.GetIntegerTrinity() == 2) //The monster being hit is a grass type
             {
-                switch (iOpponentTrinity)
+                switch (m_iTrinity)
                 {
                     case 0: //If the attack is fire the multiplier doubles
-                        fDamageMultiplier = 2f;
+                        fDamageMultiplier = 2;
                         //Feedback to the player on the attack being super effective
                         Console.WriteLine("It's super effective!");
                         break;
                     case 1: //If the attack is water the multiplier halves
-                        fDamageMultiplier = 0.5f;
+                        fDamageMultiplier = 0;
                         //Feedback to the player on the attack being not very effective
                         Console.WriteLine("It's not very effective...");
                         break;
@@ -190,27 +215,30 @@ namespace Wille_T1_FinalProject
                         break;
                 }
             }
-            iOpponentAttack -= m_iDefense; //An attack is reduced by the monster's defense
 
-            //If the attack is supereffective or not very effective then change the attack's damage
-            if (fDamageMultiplier != 1)
-            {
-                //Changing the attack to a float and multiplying the attack
-                float fOppoentAttack = iOpponentAttack;
-                fOppoentAttack *= fDamageMultiplier;
-                //Changing the opponents attack back to an int for health subtraction
-                //This change rounds up to the nearest whole number!!!
-                iOpponentAttack = Convert.ToInt32(fOppoentAttack);
-            }
+            int ModifiedAtk = m_iAttack;
+
+            //Handling damage multiplier
+
+            ModifiedAtk *= fDamageMultiplier; //Apply multiplier
+            
+
+            ModifiedAtk -= Enemy.GetDefense(); //An monster's attack is reduced by the enemy's defense
+            
             //The minimum attack will still deal 2 damage
-            if (iOpponentAttack < 2) 
+            if (ModifiedAtk < 2) 
             {
-                iOpponentAttack = 2;
+                ModifiedAtk = 2;
             }
-            //Subtracting the opponents attack from our health
-            m_iHealth -= iOpponentAttack;
+
+            Enemy.LoseHealth(ModifiedAtk); //Reduce the enemy monster's health by the attack
+
             //Provide feedback to the player on how much damage was dealt
-            Console.WriteLine(m_sName + " was dealt " + iOpponentAttack + " damage!");
+            Console.WriteLine(Enemy.GetName() + " received " + ModifiedAtk + " damage!");
+            Console.WriteLine();
+            Console.WriteLine("Press enter to continue!");
+
+            Console.ReadLine();
         }
         //Function for using a health potion
         public void HealthPotion()
@@ -226,6 +254,21 @@ namespace Wille_T1_FinalProject
             //Feedback for the user after using a potion
             Console.WriteLine(m_sName + " is healed!");
 
+        }
+
+        public bool ripInPepperonis()
+        {
+            if(m_iHealth <= 0)
+            {
+                Console.WriteLine(m_sName + " has been defeated!");
+                Console.WriteLine();
+                Console.WriteLine("Press enter to continue!");
+
+                Console.ReadLine();
+                return true;
+            }
+            return false;
+            
         }
     }
 }
