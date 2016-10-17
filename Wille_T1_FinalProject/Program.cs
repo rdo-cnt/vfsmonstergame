@@ -381,17 +381,17 @@ namespace Wille_T1_FinalProject
         {
             Console.WriteLine(" ____________________________                      {0}'s Stats", oEnemyMonster.GetName());
             Console.WriteLine("         ");
-            Console.WriteLine("                                                attack: {0}", oEnemyMonster.GetAttack());
-            Console.WriteLine("      Health:{0}/{1}                            defense: {2}", oPlayerMonster.GetMaxHealth(), oEnemyMonster.GetHealth(), oEnemyMonster.GetDefense());
-            Console.WriteLine("                                                  speed: {0}", oEnemyMonster.GetSpeed());
-            Console.WriteLine("___________________________                     trinity: {0}", oEnemyMonster.GetStringTrinity());
+            Console.WriteLine("                                                Attack: {0}", oEnemyMonster.GetAttack());
+            Console.WriteLine("      Health:{0}/{1}                            Defense: {2}", oEnemyMonster.GetHealth(), oEnemyMonster.GetMaxHealth(), oEnemyMonster.GetDefense());
+            Console.WriteLine("                                                  Speed: {0}", oEnemyMonster.GetSpeed());
+            Console.WriteLine("___________________________                     Trinity: {0}", oEnemyMonster.GetStringTrinity());
             Console.WriteLine("-------------------------------------------------------------------------");
             Console.WriteLine("          {0}'s stats                  ____________________________", oPlayerMonster.GetName());
             Console.WriteLine("                                                Name:{0}          ", oPlayerMonster.GetName());
-            Console.WriteLine("          attack: {0}                                             ", oPlayerMonster.GetAttack());
-            Console.WriteLine("         defense: {0}                        Health:{1}/{2}         ", oPlayerMonster.GetDefense(), oPlayerMonster.GetHealth(), oPlayerMonster.GetMaxHealth());
-            Console.WriteLine("           speed: {0}                                             ", oPlayerMonster.GetSpeed());
-            Console.WriteLine("         trinity: {0}                  ___________________________", oPlayerMonster.GetStringTrinity());
+            Console.WriteLine("          Attack: {0}                                             ", oPlayerMonster.GetAttack());
+            Console.WriteLine("         Defense: {0}                        Health:{1}/{2}         ", oPlayerMonster.GetDefense(), oPlayerMonster.GetHealth(), oPlayerMonster.GetMaxHealth());
+            Console.WriteLine("           Speed: {0}                                             ", oPlayerMonster.GetSpeed());
+            Console.WriteLine("         Trinity: {0}                  ___________________________", oPlayerMonster.GetStringTrinity());
         }
 
         static bool Combat(Monster playerMonster, int iBattleNumber)
@@ -410,7 +410,7 @@ namespace Wille_T1_FinalProject
             int iChosenEnemyAction = 0;
 
             //Potion amount
-            int iPotions = 1;
+            int iPotions = 2;
             int iEnemyPotion = 1;
 
             //iTruth value for parse
@@ -455,7 +455,7 @@ namespace Wille_T1_FinalProject
                     Console.WriteLine("-------------");
                     Console.WriteLine("1.) Regular Attack");
                     Console.WriteLine("2.) Special Attack");
-                    Console.WriteLine("3.) Potion ({0} available",iPotions);
+                    Console.WriteLine("3.) Potion ({0} available)",iPotions);
                     Console.WriteLine("-------------");
 
                     Console.WriteLine();
@@ -479,7 +479,8 @@ namespace Wille_T1_FinalProject
                             }
                             else
                             {
-                                //subtract the number of alloted attribute points by the number used by the player
+                                //If the player uses a potion, remove it from their inventory
+                                iPotions -= 1;
                                 bValidNumber = true;
                             }
                             
@@ -516,7 +517,11 @@ namespace Wille_T1_FinalProject
                 {
                     //chose action between 1 and 3
                     iChosenEnemyAction = choiceDie.Next(1, 4);
-                    
+                    //if the enemy uses a potion remove it for them.
+                    if (iChosenEnemyAction == 3)
+                    {
+                        iEnemyPotion -= 1;
+                    }
                 }
                 else
                 {
