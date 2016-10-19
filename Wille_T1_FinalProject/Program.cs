@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 
+//Created by Rodolfo Cantu Ortiz, Michael Wille, Gareth Lewin, and Daniel Bridgman
 namespace Wille_T1_FinalProject
 {
     class Program
